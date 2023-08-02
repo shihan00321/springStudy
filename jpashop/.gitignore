@@ -38,3 +38,6 @@ out/
 
 *.yml
 apllication.properties
+*.css
+*.map
+*.js
