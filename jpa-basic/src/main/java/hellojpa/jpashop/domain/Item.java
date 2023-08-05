@@ -1,6 +1,8 @@
 package hellojpa.jpashop.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(indexes = @index ...)
@@ -13,6 +15,21 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    public void addOrderItems(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setItem(this);
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
     public Long getId() {
         return id;

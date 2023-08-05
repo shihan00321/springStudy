@@ -1,6 +1,8 @@
 package hellojpa.jpashop;
 
 import hellojpa.Member;
+import hellojpa.jpashop.domain.Order;
+import hellojpa.jpashop.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,12 +18,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUsername("c");
-            System.out.println("============");
-            em.persist(member);
-            System.out.println("id : " + member.getId());
-            System.out.println("============");
+            Order order = new Order();
+            em.persist(order);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+
+            em.persist(orderItem);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
@@ -31,22 +35,4 @@ public class JpaMain {
         emf.close();
     }
 
-    private static void findMembers(EntityManager em) {
-//        List<Member> result = em.createQuery("select m from Member m", Member.class)
-//                .setFirstResult(0 )
-//                .setMaxResults(5)
-//                .getResultList();
-//        for (Member member : result) {
-//            System.out.println("member = " + member.getName());
-//        }
-    }
-
-//    private static Member createMember() {
-//        //비영속 객체 생성
-//        Member member = new Member();
-//        member.setId(2L);
-//        member.setName("hello");
-//        // em.persist -> 영속 객체
-//        return member;
-//    }
 }
