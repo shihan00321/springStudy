@@ -1,6 +1,5 @@
 package hellojpa.jpashop;
 
-import hellojpa.Member;
 import hellojpa.jpashop.domain.Order;
 import hellojpa.jpashop.domain.OrderItem;
 
