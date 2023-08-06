@@ -1,13 +1,12 @@
 package hellojpa.jpashop.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import hellojpa.BaseEntity;
+
+import javax.persistence.*;
 
 @Entity
-public class Delivery {
-    @Id @GeneratedValue
+public class Delivery extends BaseEntity {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String city;
     private String street;

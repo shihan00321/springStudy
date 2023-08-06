@@ -1,5 +1,6 @@
 package hellojpa.jpashop;
 
+import hellojpa.jpashop.domain.Book;
 import hellojpa.jpashop.domain.Order;
 import hellojpa.jpashop.domain.OrderItem;
 
@@ -17,13 +18,10 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Order order = new Order();
-            em.persist(order);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-
-            em.persist(orderItem);
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("kim");
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {

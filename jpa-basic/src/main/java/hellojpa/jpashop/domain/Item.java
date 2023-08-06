@@ -1,12 +1,16 @@
 package hellojpa.jpashop.domain;
 
+import hellojpa.BaseEntity;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@DiscriminatorColumn(name = "dtype")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 //@Table(indexes = @index ...)
-public class Item {
+public abstract class Item extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID")
     private Long id;
