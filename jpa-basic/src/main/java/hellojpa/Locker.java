@@ -5,12 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity
+//@Entity
 public class Locker {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToOne(mappedBy = "locker")
-    private TestMember testMember;
+//    @OneToOne(mappedBy = "locker")
+//    private TestMember testMember;
 }

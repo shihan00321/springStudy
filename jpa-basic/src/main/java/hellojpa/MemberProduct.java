@@ -4,7 +4,7 @@ import hellojpa.jpashop.domain.Member;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class MemberProduct {
     @Id @GeneratedValue
     private Long id;

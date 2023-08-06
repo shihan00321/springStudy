@@ -14,27 +14,21 @@ public class JpaTestMain {
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            TestMember testMember = new TestMember();
-            testMember.setUsername("member1");
-            //member.changeTeam(team);
-            em.persist(testMember);
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            //team.getMembers().add(member);
-
+            em.persist(parent);
             em.flush();
             em.clear();
 
-            //Member findMember = em.find(Member.class, member.getId());
-            //List<Member> members = findMember.getTeam().getMembers();
-//            for (Member m : members) {
-//                System.out.println("m.getUsername() = " + m.getUsername());
-//            }
-
+            Parent findParent = em.find(Parent.class, parent.getId());
+            findParent.getChildList().remove(0);
             tx.commit();
+
         } catch (Exception e) {
             tx.rollback();
         } finally {

@@ -19,16 +19,18 @@ public class TestMember extends BaseEntity {
     private String username;
 
     //일대다 양방향
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+//    @ManyToOne
+//    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+//    private Team team;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     private Team team;
-
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
-
-    @OneToMany(mappedBy = "testMember")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID")
+//    private Locker locker;
+//
+//    @OneToMany(mappedBy = "testMember")
+//    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
