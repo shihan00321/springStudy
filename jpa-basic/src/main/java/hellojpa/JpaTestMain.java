@@ -14,19 +14,25 @@ public class JpaTestMain {
         tx.begin();
 
         try {
-            Child child1 = new Child();
-            Child child2 = new Child();
+            TestMember testMember = new TestMember();
+            testMember.setUsername("user1");
+            testMember.setHomeAddress(new TestAddress("city1", "street", "101"));
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+            testMember.getFavoriteFoods().add("치킨");
+            testMember.getFavoriteFoods().add("피자");
+            testMember.getFavoriteFoods().add("족발");
+            testMember.getFavoriteFoods().add("삼겹살");
 
-            em.persist(parent);
+            testMember.getAddressHistory().add(new AddressEntity("cityHistory", "streetHistory", "103"));
+            testMember.getAddressHistory().add(new AddressEntity("cityHistory", "streetHistory", "104"));
+            testMember.getAddressHistory().add(new AddressEntity("cityHistory", "streetHistory", "105"));
+
+            em.persist(testMember);
+            
             em.flush();
             em.clear();
 
-            Parent findParent = em.find(Parent.class, parent.getId());
-            findParent.getChildList().remove(0);
+            TestMember findMember = em.find(TestMember.class, testMember.getId());
             tx.commit();
 
         } catch (Exception e) {
