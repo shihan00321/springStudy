@@ -1,5 +1,7 @@
 package hellojpa.jpql;
 
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,8 @@ public class JpqlTeam {
     @Id @GeneratedValue
     private Long id;
     private String name;
+
+    //@BatchSize(size = 100)
     @OneToMany(mappedBy = "team")
     private List<JpqlMember> members = new ArrayList<>();
 

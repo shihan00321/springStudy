@@ -1,9 +1,12 @@
 package hellojpa.jpql;
 
+import hellojpa.jpashop.domain.Member;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Collection;
 import java.util.List;
 
 public class JpqlMain {
@@ -19,28 +22,40 @@ public class JpqlMain {
             team.setName("teamA");
             em.persist(team);
 
+            JpqlTeam team2 = new JpqlTeam();
+            team2.setName("teamB");
+            em.persist(team2);
+
             JpqlMember member = new JpqlMember();
             member.setUsername("hello");
-            member.setAge(20);
-            member.changeTeam(team);
-            member.setMemberType(MemberType.ADMIN);
+            member.setTeam(team);
             em.persist(member);
 
-            List<JpqlMember> resultList = em.createQuery("select m from JpqlMember m where m.memberType = hellojpa.jpql.MemberType.ADMIN", JpqlMember.class)
+            JpqlMember member2 = new JpqlMember();
+            member2.setUsername("hello2");
+            member2.setTeam(team);
+            em.persist(member2);
+
+            JpqlMember member3 = new JpqlMember();
+            member3.setUsername("hello3");
+            member3.setTeam(team2);
+            em.persist(member3);
+
+            em.flush();
+            em.clear();
+
+//            List<Collection> resultList = em.createQuery("select m from Team t join t.members m", Collection.class)
+//                    .getResultList();
+
+//            List<JpqlMember> resultList = em.createQuery("select distinct m from JpqlMember m join fetch m.team", JpqlMember.class)
+//                    .getResultList();
+            List<JpqlMember> resultList = em.createNamedQuery("JpqlMember.findByUserName", JpqlMember.class)
+                    .setParameter("username", "hello2")
                     .getResultList();
-            System.out.println("resultList = " + resultList.size());
 
-//            List<JpqlMemberDto> findMembers = em.createQuery("select new hellojpa.jpql.JpqlMemberDto(m.username, m.age) from JpqlMember m", JpqlMemberDto.class)
-//                    .getResultList();
-//            List<JpqlMember> findMembers = em.createQuery("select m from JpqlMember m where m.username = :username", JpqlMember.class)
-//                    .setParameter("username", "hello")
-//                    .getResultList();
-
-//            List<JpqlMember> pagingResult = em.createQuery("select m from JpqlMember m order by m.age desc", JpqlMember.class)
-//                    .setFirstResult(0)
-//                    .setMaxResults(10)
-//                    .getResultList();
-
+            for (JpqlMember member1 : resultList) {
+                System.out.println("member1.getId() = " + member1.getId());
+            }
             tx.commit();
 
         } catch (Exception e) {
