@@ -35,6 +35,14 @@ public class Order {
     @JoinColumn(name = "delivery_id") //1:1관계에서는 더 많은 조회가 일어나는 쪽에 연관 관계 주인 설정.
     private Delivery delivery;
 
+    public LocalDateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
