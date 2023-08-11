@@ -92,4 +92,18 @@ public class OrderRepository {
         return em.createQuery("select o from Order o join fetch o.member join fetch o.delivery", Order.class).getResultList();
     }
 
+    public List<Order> findAllWithItem() {
+        //select distinct o from Order o join fetch o.member m join fetch o.delivery d join fetch o.orderItems oi join fetch oi.item i
+        //스프링 3.X 이상부터 hibernate 6 사용 -> distinct 없이도 참조 값이 같은 엔티티는 중복 제거
+        //페이징 처리 불가 -> 메모리에서 페이징 처리를 해버림
+        return em.createQuery("select o from Order o join fetch o.member m join fetch o.delivery d join fetch o.orderItems oi join fetch oi.item i", Order.class)
+                .getResultList();
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery("select o from Order o join fetch o.member join fetch o.delivery", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }
