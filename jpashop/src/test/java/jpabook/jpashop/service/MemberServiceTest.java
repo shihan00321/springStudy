@@ -1,12 +1,10 @@
 package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.repository.MemberRepository;
-import org.junit.jupiter.api.Assertions;
+import jpabook.jpashop.repository.MemberRepositoryOld;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MemberServiceTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    MemberRepositoryOld memberRepository;
     @Autowired
     MemberService memberService;
 
