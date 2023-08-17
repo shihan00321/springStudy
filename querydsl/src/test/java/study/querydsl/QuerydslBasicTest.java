@@ -1,4 +1,4 @@
-package study.querydsl.entity;
+package study.querydsl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
@@ -22,6 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import study.querydsl.dto.MemberDto;
 import study.querydsl.dto.QMemberDto;
 import study.querydsl.dto.UserDto;
+import study.querydsl.entity.Member;
+import study.querydsl.entity.QMember;
+import study.querydsl.entity.Team;
 
 import java.util.List;
 
