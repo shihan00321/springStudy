@@ -42,7 +42,6 @@ public class HelloTraceV1 {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < level; i++) {
             sb.append( (i == level - 1) ? "|" + prefix : "|   ");
-            log.info("test");
         }
         return sb.toString();
     }
