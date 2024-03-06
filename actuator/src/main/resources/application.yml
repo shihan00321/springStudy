@@ -1,0 +1,37 @@
+management:
+  endpoint:
+#    shutdown:
+#      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      #base-path: "/manage"
+
+  info:
+    java:
+      enabled: true
+    os:
+      enabled: true
+    env:
+      enabled: true
+#
+#  server:
+#    port: 9292
+
+info:
+  app:
+    name: hello-actuator
+    company: yh
+
+logging:
+  level:
+    hello.controller: debug
+
+# tomcat.threads.config.max, tomcat.threads.busy 자주 사용
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
